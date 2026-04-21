@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>机电知识手册</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Microsoft YaHei,sans-serif}
+body{background:#f4f7fa;color:#333;min-height:100vh}
+.header{background:#1677ff;color:#fff;padding:14px 20px;font-size:20px}
+.search{padding:12px;background:#fff}
+.search input{width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;outline:none}
+.main{display:flex}
+.menu{width:180px;background:#fff;padding:15px;border-right:1px solid #eee}
+.menu h3{font-size:15px;margin-bottom:10px;color:#1677ff}
+.menu .item{padding:8px 0;font-size:14px;cursor-pointer}
+.menu .item:hover{color:#1677ff}
+.content{flex:1;padding:20px}
+.article{background:#fff;padding:18px;border-radius:10px;margin-bottom:12px}
+.article h4{margin-bottom:8px}
+.article p{color:#666;line-height:1.7}
+.hide{display:none}
+</style>
+</head>
+<body>
+
+<div class="header">机电设备知识手册</div>
+<div class="search">
+<input id="searchInput" oninput="search()" placeholder="搜索电机、安装、维护、故障...">
+</div>
+
+<div class="main">
+<div class="menu">
+<h3>知识分类</h3>
+<div class="item" onclick="show('all')">全部内容</div>
+<div class="item" onclick="show('base')">机电基础</div>
+<div class="item" onclick="show('install')">设备安装</div>
+<div class="item" onclick="show('maintain')">维护保养</div>
+<div class="item" onclick="show('fault')">故障排查</div>
+<div class="item" onclick="show('safe')">安全规范</div>
+</div>
+
+<div class="content">
+<div class="article" data-type="base">
+<h4>常用电气元件</h4>
+<p>断路器、接触器、继电器、传感器、变频器等，用于电路保护与自动控制。</p>
+</div>
+<div class="article" data-type="base">
+<h4>机械基础部件</h4>
+<p>轴承、齿轮、皮带、联轴器等，保证传动平稳、间隙合理、润滑良好。</p>
+</div>
+
+<div class="article" data-type="install">
+<h4>电机安装找平找正</h4>
+<p>水平误差≤0.1mm/m，对中偏差≤0.05mm，避免振动过大损坏轴承。</p>
+</div>
+<div class="article" data-type="install">
+<h4>电气柜安装规范</h4>
+<p>柜体垂直牢固，接地可靠，强弱电分离，线号清晰，防潮防尘。</p>
+</div>
+
+<div class="article" data-type="maintain">
+<h4>电机日常维护</h4>
+<p>定期清洁、测温、查振动、听异响，按期润滑，紧固螺栓。</p>
+</div>
+<div class="article" data-type="maintain">
+<h4>设备保养周期</h4>
+<p>每日巡检、每周清洁、每月紧固、每季润滑、每年全面检修。</p>
+</div>
+
+<div class="article" data-type="fault">
+<h4>电机不启动原因</h4>
+<p>缺相、热继动作、接触器损坏、线路断路、机械卡阻、绕组烧毁。</p>
+</div>
+<div class="article" data-type="fault">
+<h4>设备过热原因</h4>
+<p>过载、润滑不足、散热差、电压异常、轴承损坏、摩擦过大。</p>
+</div>
+
+<div class="article" data-type="safe">
+<h4>电气安全操作</h4>
+<p>停电→验电→挂牌→上锁，严禁带电作业，做好绝缘防护。</p>
+</div>
+<div class="article" data-type="safe">
+<h4>机械安全注意</h4>
+<p>旋转部件必须加防护罩，检修必须停机断电。</p>
+</div>
+</div>
+</div>
+
+<script>
+function show(t){
+  document.querySelectorAll('.article').forEach(e=>{
+    e.classList.toggle('hide', t!=='all'&&e.dataset.type!==t)
+  })
+}
+function search(){
+  let k=document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.article').forEach(e=>{
+    e.classList.toggle('hide',!e.innerText.toLowerCase().includes(k))
+  })
+}
+</script>
+</body>
+</html>
